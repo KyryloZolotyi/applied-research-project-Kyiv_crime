@@ -40,3 +40,14 @@ Final Stage: Visualization of Results
 
 
 # Conclusion
+
+The analysis showed that there is a strong correlation between the number of CCTV cameras and the crime rate. The Pearson coefficient ≈ 0.96 indicates an almost linear relationship between these variables, which confirms a high dependence. However, the Spearman coefficient ≈ 0.81 indicates the possible influence of outliers or nonlinear relationships in the data.
+
+This result can be explained by two main factors. 
+- First, cameras are usually installed in areas with a high crime rate, which creates an inverse relationship: it is not the cameras that reduce crime, but crime that determines their location.
+- Second, it is most likely that the increase in the number of cameras contributes to the recording of more offenses, rather than a real increase in crime.
+- However, looking at the scatter plot, we can see that Solomyanskyi district has a significantly higher crime rate than expected with an average level of cameras. Solomyanskyi district is one of Kyiv’s transport hubs (railway station, Zhulyany airport), which may contribute to the increase in crime rate.
+
+Increasing the number of surveillance cameras in the Solomianskyi district is advised to improve crime detection and enhance public safety, considering its significantly high crime rate.
+
+
