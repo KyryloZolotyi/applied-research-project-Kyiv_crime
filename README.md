@@ -42,6 +42,16 @@ Final Stage: Visualization of Results
 # Data Model
 ![pet_project1](https://github.com/user-attachments/assets/e5164918-3620-4c08-b7f3-fe9fd11a09c7)
 
+# Results
+
+<img width="1432" alt="Screenshot 2025-01-30 at 15 59 10" src="https://github.com/user-attachments/assets/ff87768f-dd72-405d-a17a-f3bff13d6dd6" />
+
+
+
+<img width="1434" alt="Screenshot 2025-01-30 at 15 59 35" src="https://github.com/user-attachments/assets/01051b1e-117f-4c90-afa9-0aadbab4189b" />
+
+- Visualization result: https://public.tableau.com/views/KSV/CrimeSurveillanceStats?:language=en-US&publish=yes&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+
 
 # Conclusion
 
