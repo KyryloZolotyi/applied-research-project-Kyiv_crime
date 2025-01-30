@@ -4,7 +4,7 @@ This project explores the relationship between crime rates and the deployment of
 # Introduction
 The main goal of this project is to investigate whether the number of surveillance cameras affects the number of crimes. Additionally, the analysis is performed using various technologies and tools, including Python, SQL, statistical analysis, QGIS, and Tableau.
 
-
+# Data Sources
 Data on the location of video surveillance cameras in Kyiv: https://kyiv-data.com/ - bit.ly/ksv-kyiv ( Dataset ); 
 Criminal lawlessness statistics, data from the Attorney General's Office: https://erdr-map.gp.gov.ua/csp/map/index.html#/map ;
 Data about districts of Kyiv: https://kyivcity.gov.ua/kyiv_ta_miska_vlada/pro_kyiv/raiony_kyieva/
