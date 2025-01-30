@@ -6,7 +6,11 @@ The main goal of this project is to investigate whether the number of surveillan
 
 # Data Sources
 Data on the location of video surveillance cameras in Kyiv: https://kyiv-data.com/ - bit.ly/ksv-kyiv ( Dataset ); 
+
 Criminal lawlessness statistics, data from the Attorney General's Office: https://erdr-map.gp.gov.ua/csp/map/index.html#/map ;
+
+NOTE: The crime data cover the period from January to December 2024.
+
 Data about districts of Kyiv: https://kyivcity.gov.ua/kyiv_ta_miska_vlada/pro_kyiv/raiony_kyieva/
 
 # ETL Pipeline
