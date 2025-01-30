@@ -1,4 +1,5 @@
 -- Creating table Crime Statistics 
+
 CREATE TABLE pet_project.CrimeStatistics (
     Region_Name VARCHAR(100) NOT NULL,
     Violent INT NOT NULL,
@@ -8,6 +9,7 @@ CREATE TABLE pet_project.CrimeStatistics (
 );
 
 -- Inserting crime data per district
+
 INSERT INTO pet_project.CrimeStatistics (Region_Name, Violent, Minor_Crimes, Serious_Crimes, Very_Serious_Crimes)
 VALUES
     ('Holosiivskyi distr.', 1180, 795, 2327, 584),
@@ -22,6 +24,7 @@ VALUES
     ('Shevchenkivskyi distr.', 1221, 1170, 3267, 596);
 
 -- Creating table for districts' details
+
 CREATE TABLE IF NOT EXISTS pet_project.districts (
     name VARCHAR(255) UNIQUE NOT NULL,
     area DECIMAL(10, 2),
@@ -29,6 +32,7 @@ CREATE TABLE IF NOT EXISTS pet_project.districts (
 );
 
 -- Inserting district details: area and population
+
 INSERT INTO pet_project.districts (name, area, population) VALUES
 ('Holosiivskyi distr.', 156, 247600),
 ('Darnytskyi distr.', 134, 314700),
@@ -42,6 +46,7 @@ INSERT INTO pet_project.districts (name, area, population) VALUES
 ('Shevchenkivskyi distr.', 26.6, 218900);
 
 -- Creating a view to join crime statistics with camera data
+
 CREATE VIEW pet_project.crimestatistics_kyiv_cam_view AS
 SELECT 
     cs.*,  -- All columns from CrimeStatistics
@@ -51,6 +56,7 @@ JOIN pet_project.kyiv_cam kc
 ON cs.Region_Name = kc.Districts;
 
 -- Counting the number of cameras by model, replacing unknown values
+
 WITH cte1 AS (
     SELECT 
         CASE 
@@ -67,6 +73,7 @@ GROUP BY Model_cam1
 ORDER BY Amount_Cam DESC;
 
 -- Calculating total crimes per district
+
 SELECT 
     Region_Name AS District, 
     SUM(Violent + Minor_Crimes + Serious_Crimes + Very_Serious_Crimes) AS Total_Crimes
@@ -74,7 +81,8 @@ FROM pet_project.CrimeStatistics
 GROUP BY Region_Name
 ORDER BY Total_Crimes DESC;
 
--- Calculating camera and crime density per km²
+-- Calculating camera and crime density per km
+
 WITH cte2 AS (
     SELECT
         cs.Region_Name AS District,
@@ -110,6 +118,7 @@ FROM cte3
 ORDER BY crime_per_km DESC;
 
 -- Calculating crime rate deviation from the mean
+
 WITH cte4 AS (
     SELECT 
         District,
@@ -122,24 +131,3 @@ WITH cte4 AS (
 )
 SELECT District, cam_per_km, crime_per_km, av_crime, dev, percent_dev FROM cte4 
 ORDER BY 3;
-
--- Assigning crime quartiles and camera terciles
-WITH ranked AS (
-    SELECT 
-        District,
-        crime_per_km,
-        cam_per_km,
-        ROW_NUMBER() OVER (ORDER BY crime_per_km DESC) AS crime_rank,  -- Rank by crime density
-        ROW_NUMBER() OVER (ORDER BY cam_per_km DESC) AS cam_rank  -- Rank by camera density
-    FROM cte3
-)
-SELECT 
-    r.District,
-    r.crime_per_km,
-    r.cam_per_km,
-    CEIL(r.crime_rank / (SELECT COUNT(*) FROM cte3) * 4) AS crime_quartile,  -- Divide into 4 groups
-    CEIL(r.cam_rank / (SELECT COUNT(*) FROM cte3) * 3) AS camera_tercile,  -- Divide into 3 groups
-    c.dev,
-    c.percent_dev
-FROM ranked r
-JOIN cte4 c ON r.District = c.District;
